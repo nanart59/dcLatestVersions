@@ -1,3 +1,14 @@
+2020-08-11 - Nan'Art
+* modification _admin.php
+	- suppression 'dcCore ' devant objet $core des méthodes 						-- $core est un objet dcCore
+	- remplacement __dashboard_items par items, méthode adminDashboardItems 		-- souci lisibilité
+	- remplacement if (false === $updater->check('0')) { return false; -> par continue; 
+																					-- même si pas de fichier de version (ex: sexy) on arrête pas !!!
+	- remplacement #display: $__dashboard_items[0][] = par $items[] = new ArrayObject([ ..., méthode adminDashboardItems
+																					-- object not array !
+	- ajout version plug dans adminDashboardOptionsForm et adminDashboardOptionsForm 
+																					-- pour distinguer "visuellement" des versions light et full (à venir)
+
 2015-03-11 - Pierre Van Glabeke
 * ajout mode hors ligne et codage titre widget (widget)
 * encodage UNIX (LF)
