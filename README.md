@@ -18,9 +18,11 @@ Simply show visitors last versions of nightly build of Dotclear.
 
 First install dcLatestVersions, manualy from a zip package.
 (See Dotclear's documentation to know how do this)
+
 Add and configure "Dotclear's latest versions" from widgets manager.
 You can add a dashboard item by enable it from your dashboard preferences.
---
+
+
 Installez d'abord dcLatestVersions, manuellement à partir d'un package zip.
 (Voir la documentation de Dotclear pour savoir comment faire)
 
