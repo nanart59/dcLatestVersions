@@ -40,7 +40,7 @@ $core->addBehavior(
  */
 class dcLatestVersionsAdmin
 {
-	public static function adminDashboardItems(dcCore $core, $__dashboard_items)
+	public static function adminDashboardItems( $core, $items)
 	{
 		if (!$core->auth->user_prefs->dashboard->get('dcLatestVersionsItems')) {
 
@@ -50,7 +50,7 @@ class dcLatestVersionsAdmin
 		$builds = (string) $core->blog->settings->dcLatestVersions->builds;
 		$builds = explode(',', $builds);
 		if (empty($builds)) {
-
+			//no builds, return
 			return null;
 		}
 
@@ -61,6 +61,7 @@ class dcLatestVersionsAdmin
 
 			$build = strtolower(trim($build));
 			if (empty($build)) {
+				//no update build, continue
 				continue;
 			}
 
@@ -72,8 +73,8 @@ class dcLatestVersionsAdmin
 			);
 
 			if (false === $updater->check('0')) {
-
-				return false;
+				//if updater as no content -- like no 'sexy' version file update -> continue / not return !!
+				continue;
 			}
 
 			$li[] = str_replace(
@@ -92,20 +93,30 @@ class dcLatestVersionsAdmin
 		}
 
 		if (empty($li)) {
-
+			//no update, return
 			return null;
 		}
-		
+
+		//some plugin infos
+		#plugin name
+			$p_name = $core->plugins->moduleInfo('dcLatestVersions', 'name');
+		#plugin version
+			$p_version = $core->plugins->moduleInfo($p_name, 'version');
+
 		# Display
-		$__dashboard_items[0][] =
-		'<div class="box small" id="udclatestversionsitems">'.
-		'<h3>'.html::escapeHTML(__("Dotclear's latest versions")).'</h3>'.
-		'<ul>'.implode('', $li).'</ul>'.
-		'</div>';
+		$items[] = new ArrayObject([								//new array not array[0]
+			'<div class="box small" id="udclatestversionsitems">'.
+			'<h3>'.html::escapeHTML(__("Dotclear's latest versions")).'</h3>'.
+			'<p>' .' <i>(v. original:' .$p_version .')</i>'.'</p>'.
+			'<ul>'.implode('', $li).'</ul>'.
+			'</div>'
+			]);
 	}
 
-	public static function adminDashboardOptionsForm(dcCore $core)
+	public static function adminDashboardOptionsForm( $core)
 	{
+		$plugin = 'dcLatestVersions';
+		$plugin_version = 'dcLatestVersions';
 		if (!$core->auth->user_prefs->dashboard->prefExists('dcLatestVersionsItems')) {
 			$core->auth->user_prefs->dashboard->put(
 				'dcLatestVersionsItems',
@@ -115,9 +126,16 @@ class dcLatestVersionsAdmin
 		}
 		$pref = $core->auth->user_prefs->dashboard->get('dcLatestVersionsItems');
 
+		//some plugin infos
+		#plugin name
+			$p_name = $core->plugins->moduleInfo('dcLatestVersions', 'name');
+		#plugin version
+			$p_version = $core->plugins->moduleInfo($p_name, 'version');
+
 		echo  
 		'<div class="fieldset">'.
-		'<h4>'.__("Dotclear's latest versions").'</h4>'.
+		'<h4>'.__("Dotclear's latest versions") .'</h4>'.
+		'<p>'  .' <i>(v. original:' .$p_version .')</i>'.'</p>'.
 		'<p><label class="classic" for="dcLatestVersionsItems">'.
 		form::checkbox('dcLatestVersionsItems', 1, $pref).' '.
 		__("Show Dotclear's latest versions on dashboards.").
