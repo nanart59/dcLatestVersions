@@ -25,13 +25,13 @@ $this->registerModule(
 	/* Author */
 	"Jean-Christian Denis, Pierre Van Glabeke",
 	/* Version */
-	'2015-03-11',
+	'2020-08-11',
 	/* Properies */
 	array(
 		'permissions' => 'usage,contentadmin',
 		'type' => 'plugin',
 		'dc_min' => '2.6',
-		'support' => 'http://forum.dotclear.org/viewforum.php?id=16',
-		'details' => 'http://plugins.dotaddict.org/dc2/details/dcLatestVersions'
+		'support' => 'https://forum.dotclear.org/viewtopic.php?pid=344852',
+		'details' => 'https://github.com/nanart59/dcLatestVersions'
 	)
 );
