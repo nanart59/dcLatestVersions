@@ -12,7 +12,7 @@ Simply show visitors last versions of nightly build of Dotclear.
  dcLatestVersions requires: 
 
   * permissions to manage widgets
-  * Dotclear 2.6
+  * Dotclear 2.16
 
 ## USAGE
 
