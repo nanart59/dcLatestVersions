@@ -19,7 +19,7 @@ if (!defined('DC_CONTEXT_ADMIN')) {
 
 # -- Module specs --
 
-$dc_min = '2.6';
+$dc_min = '2.16';
 $mod_id = 'dcLatestVersions';
 $mod_conf = array(
 	array(
