@@ -29,7 +29,7 @@ $this->registerModule(
 	array(
 		'permissions' => 'usage,contentadmin',
 		'type' => 'plugin',
-		'dc_min' => '2.6',
+		'dc_min' => '2.16',
 		'support' => 'https://forum.dotclear.org/viewtopic.php?pid=344852',
 		'details' => 'https://github.com/nanart59/dcLatestVersions'
 	)
